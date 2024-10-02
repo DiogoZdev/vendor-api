@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgres"
+  url      = env("DB_URL")
+}
+
+model Vendor {
+  id         Int    @id() @default(autoincrement())
+  name       String
+  serviceId  Int    @map("service_id")
+  locationId Int    @map("location_id")
+
+  location Location @relation(fields: [locationId], references: [id])
+  service  Service  @relation(fields: [serviceId], references: [id])
+}
+
+model Job {
+  id          Int    @id() @default(autoincrement())
+  description String
+  locationId  Int    @map("location_id")
+  serviceId   Int    @map("service_id")
+
+  location Location @relation(fields: [locationId], references: [id])
+  service  Service  @relation(fields: [serviceId], references: [id])
+}
+
+model Service {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  vendors Vendor[]
+  jobs    Job[]
+}
+
+model Location {
+  id    Int    @id() @default(autoincrement())
+  name  String
+  state String
+
+  jobs    Job[]
+  vendors Vendor[]
+}
