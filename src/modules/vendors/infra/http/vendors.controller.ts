@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { BasicAuthGuard } from '@auth/guards/auth.guard';
+import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
 import { CreateVendorUseCase } from '@vendors/app/use-cases/create-vendor.use-case';
 import { GetVendorsUseCase } from '@vendors/app/use-cases/get-vendors.use-case';
 import { ListVendorsUseCase } from '@vendors/app/use-cases/list-vendors.use-case';
@@ -12,11 +13,13 @@ export class VendorsController {
 		private readonly getVendorsUseCase: GetVendorsUseCase,
 	) {}
 
+	@UseGuards(BasicAuthGuard)
 	@Post('/')
 	createVendor(@Body() vendor: VendorInputDTO) {
 		return this.createVendorUseCase.execute(vendor);
 	}
 
+	@UseGuards(BasicAuthGuard)
 	@Get('/')
 	listVendors(
 		@Query()
