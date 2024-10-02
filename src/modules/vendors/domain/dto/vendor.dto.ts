@@ -6,8 +6,8 @@ export class VendorInputDTO implements IVendor {
 	name: string;
 
 	@IsNumber({ allowNaN: false, allowInfinity: false, maxDecimalPlaces: 0 })
-	locationId?: number;
+	locationId: number;
 
 	@IsNumber({ allowNaN: false, allowInfinity: false, maxDecimalPlaces: 0 })
-	serviceId?: number;
+	serviceId: number;
 }

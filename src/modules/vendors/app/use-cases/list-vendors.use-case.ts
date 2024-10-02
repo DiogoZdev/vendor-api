@@ -17,6 +17,6 @@ export class ListVendorsUseCase {
 			locationId,
 		});
 
-		console.log(res);
+		return res;
 	}
 }

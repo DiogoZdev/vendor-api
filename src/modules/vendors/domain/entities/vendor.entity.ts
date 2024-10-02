@@ -4,8 +4,8 @@ import { IService } from '@shared/core/entities/service.entity';
 export interface IVendor {
 	id?: number;
 	name: string;
-	serviceId?: number;
-	locationId?: number;
+	serviceId: number;
+	locationId: number;
 	service?: IService;
 	location?: ILocation;
 }
@@ -17,8 +17,8 @@ export class Vendor implements IVendor {
 
 	id?: number;
 	name: string;
-	serviceId?: number;
-	locationId?: number;
+	serviceId: number;
+	locationId: number;
 	service?: IService;
 	location?: ILocation;
 }

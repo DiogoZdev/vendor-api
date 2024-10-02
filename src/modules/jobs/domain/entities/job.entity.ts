@@ -4,8 +4,8 @@ import { IService } from '@shared/core/entities/service.entity';
 export interface IJob {
 	id?: number;
 	description: string;
-	locationId?: number;
-	serviceId?: number;
+	locationId: number;
+	serviceId: number;
 	location?: ILocation;
 	service?: IService;
 }
@@ -17,8 +17,8 @@ export class Job implements IJob {
 
 	id?: number;
 	description: string;
-	locationId?: number;
-	serviceId?: number;
+	locationId: number;
+	serviceId: number;
 	location?: ILocation;
 	service?: IService;
 }

@@ -1,9 +1,11 @@
-import { PrismaClient } from '@prisma/client';
+import { Injectable } from '@nestjs/common';
+import { PrismaService } from '@shared/infra/prisma.service';
 import { AbsVendorsRepository } from '@vendors/app/abstractions/abs-vendors.repository';
 import { IVendor } from '@vendors/domain/entities/vendor.entity';
 
+@Injectable()
 export class VendorsRepository implements AbsVendorsRepository {
-	constructor(private readonly prisma: PrismaClient) {}
+	constructor(private readonly prisma: PrismaService) {}
 
 	async listVendors({
 		serviceId,

@@ -4,7 +4,7 @@ import { GetVendorsUseCase } from '@vendors/app/use-cases/get-vendors.use-case';
 import { ListVendorsUseCase } from '@vendors/app/use-cases/list-vendors.use-case';
 import { VendorInputDTO } from '@vendors/domain/dto/vendor.dto';
 
-@Controller({ path: 'vendors', version: '1' })
+@Controller('v1/vendors')
 export class VendorsController {
 	constructor(
 		private readonly createVendorUseCase: CreateVendorUseCase,
@@ -18,12 +18,24 @@ export class VendorsController {
 	}
 
 	@Get('/')
-	listVendors(@Query() filters?: { serviceId?: number; locationId?: number }) {
-		return this.listVendorsUseCase.execute(filters);
+	listVendors(
+		@Query()
+		{ locationId, serviceId }: { serviceId?: string; locationId?: string },
+	) {
+		return this.getVendorsUseCase.execute({
+			locationId: parseInt(locationId),
+			serviceId: parseInt(serviceId),
+		});
 	}
 
 	@Get('/count')
-	getVendors(@Query() filters?: { serviceId?: number; locationId?: number }) {
-		return this.getVendorsUseCase.execute(filters);
+	getVendors(
+		@Query()
+		{ locationId, serviceId }: { serviceId?: string; locationId?: string },
+	) {
+		return this.listVendorsUseCase.execute({
+			locationId: parseInt(locationId),
+			serviceId: parseInt(serviceId),
+		});
 	}
 }
