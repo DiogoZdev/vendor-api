@@ -1,7 +1,7 @@
 import { IsNumber, IsString } from 'class-validator';
-import { IVendor } from '../entities/vendor.entity';
+import { IVendor } from '@vendors/domain/entities/vendor.entity';
 
-export class VendorInputDTO implements IVendor {
+export class VendorDTO implements IVendor {
 	@IsString({ message: 'The vendor name must be a string' })
 	name: string;
 
