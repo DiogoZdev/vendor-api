@@ -31,13 +31,12 @@ describe('CreateJobUseCase', () => {
 
 	it('should call repository with valid data', () => {
 		const repositorySpy = jest.spyOn(repository, 'getVendors');
-		const filter = {
-			locationId: 1,
-			serviceId: 1,
+		const input = {
+			jobId: 1,
 		};
-		sut.execute(filter);
+		sut.execute(input);
 
-		expect(repositorySpy).toHaveBeenCalledWith(filter);
+		expect(repositorySpy).toHaveBeenCalledWith(input);
 		expect(repositorySpy).toHaveBeenCalledTimes(1);
 	});
 });

@@ -21,24 +21,12 @@ export class VendorsController {
 
 	@UseGuards(BasicAuthGuard)
 	@Get('/')
-	listVendors(
-		@Query()
-		{ locationId, serviceId }: { serviceId?: string; locationId?: string },
-	) {
-		return this.getVendorsUseCase.execute({
-			locationId: parseInt(locationId),
-			serviceId: parseInt(serviceId),
-		});
+	listVendors(@Query() { jobId }: { jobId?: string }) {
+		return this.getVendorsUseCase.execute({ jobId: parseInt(jobId) });
 	}
 
 	@Get('/count')
-	getVendors(
-		@Query()
-		{ locationId, serviceId }: { serviceId?: string; locationId?: string },
-	) {
-		return this.listVendorsUseCase.execute({
-			locationId: parseInt(locationId),
-			serviceId: parseInt(serviceId),
-		});
+	getVendors(@Query() { jobId }: { jobId?: string }) {
+		return this.listVendorsUseCase.execute({ jobId: parseInt(jobId) });
 	}
 }

@@ -5,17 +5,8 @@ import { AbsVendorsRepository } from '@vendors/app/abstractions/abs-vendors.repo
 export class ListVendorsUseCase {
 	constructor(private vendorsRepository: AbsVendorsRepository) {}
 
-	async execute({
-		serviceId,
-		locationId,
-	}: {
-		locationId?: number;
-		serviceId?: number;
-	}) {
-		const res = await this.vendorsRepository.listVendors({
-			serviceId,
-			locationId,
-		});
+	async execute({ jobId }: { jobId?: number }) {
+		const res = await this.vendorsRepository.listVendors({ jobId });
 
 		return res;
 	}

@@ -5,16 +5,9 @@ import { AbsVendorsRepository } from '@vendors/app/abstractions/abs-vendors.repo
 export class GetVendorsUseCase {
 	constructor(private readonly vendorsRepository: AbsVendorsRepository) {}
 
-	execute({
-		serviceId,
-		locationId,
-	}: {
-		serviceId?: number;
-		locationId?: number;
-	}) {
+	execute({ jobId }: { jobId?: number }) {
 		return this.vendorsRepository.getVendors({
-			serviceId,
-			locationId,
+			jobId,
 		});
 	}
 }
